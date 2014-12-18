@@ -2,7 +2,6 @@
 /**
  * FutureSerializer.php
  *
- * @copyright   Copyright (c) 2014 sonicmoov Co.,Ltd.
  * @version     $Id$
  *
  */
@@ -47,7 +46,7 @@ class FutureSerializer {
     {
         if ($data instanceof FutureResult) {
 
-            $data->then(function ($response) {
+            $promise = $data->then(function ($response) {
                 /** @var \GuzzleHttp\Message\Response $response */
                 if (strpos((string)$response->getHeader('Content-Type'), 'json') !== false) {
                     return $this->decode($response->getBody());
@@ -55,13 +54,13 @@ class FutureSerializer {
                     //Not json, return as string
                     return $response->getBody();
                 }
+            }, function (\Exception $e) {
+                throw $e;
+//                echo $e;
+//                echo sprintf('%s in %s at %d', $e->getMessage(), __FILE__, __LINE__) . PHP_EOL;
             });
 
-            return new FutureData(
-                $data,
-                [ $data, 'wait' ],
-                [ $data, 'cancel' ]
-            );
+            return new FutureData($promise);
         } else {
 
             if (isset($headers['content_type']) === true) {

@@ -2,7 +2,6 @@
 /**
  * FutureData.php
  *
- * @copyright   Copyright (c) 2014 sonicmoov Co.,Ltd.
  * @version     $Id$
  *
  */
@@ -26,21 +25,6 @@ class FutureData  implements \ArrayAccess, \Countable, ToArrayInterface, FutureI
     {
         return $this->parentWait();
     }
-
-//    public function hasKey($name)
-//    {
-//        return $this->_value->hasKey($name);
-//    }
-//
-//    public function get($name)
-//    {
-//        return $this->_value->get($name);
-//    }
-//
-//    public function getIterator()
-//    {
-//        return $this->_value->getIterator();
-//    }
 
     public function offsetGet($offset)
     {

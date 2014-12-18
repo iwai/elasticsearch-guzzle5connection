@@ -2,7 +2,6 @@
 /**
  * Guzzle5Connection.php
  *
- * @copyright   Copyright (c) 2014 sonicmoov Co.,Ltd.
  * @version     $Id$
  *
  */
@@ -70,16 +69,15 @@ class Guzzle5Connection extends AbstractConnection implements ConnectionInterfac
         }
 
         $loop = null;
-        if (isset($connectionParams['connectionParams'])) {
-            $this->connectionOpts = $connectionParams['connectionParams'];
-
-            if (!isset($connectionParams['connectionParams']['loop'])) {
+        if (isset($connectionParams)) {
+            if (!isset($connectionParams['loop'])) {
                 $log->critical('loop must be set in connectionParams');
                 throw new InvalidArgumentException('loop must be set in connectionParams');
             }
-            $loop = $connectionParams['connectionParams']['loop'];
-            unset($connectionParams['connectionParams']['loop']);
+            $loop = $connectionParams['loop'];
+            unset($connectionParams['loop']);
 
+            $this->connectionOpts = $connectionParams;
         } else {
             $log->critical('loop must be set in connectionParams');
             throw new InvalidArgumentException('loop must be set in connectionParams');
@@ -126,7 +124,7 @@ class Guzzle5Connection extends AbstractConnection implements ConnectionInterfac
         $response = $this->sendRequest($method, $uri, $body, $options);
 
         return new FutureResult(
-            $response,
+            $response->promise(),
             [ $response, 'wait' ],
             [ $response, 'cancel' ]
         );

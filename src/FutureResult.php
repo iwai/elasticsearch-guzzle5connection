@@ -2,7 +2,6 @@
 /**
  * FutureResult.php
  *
- * @copyright   Copyright (c) 2014 sonicmoov Co.,Ltd.
  * @version     $Id$
  *
  */
@@ -15,6 +14,7 @@ use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Future\FutureInterface;
 use GuzzleHttp\Ring\Future\MagicFutureTrait;
 use GuzzleHttp\ToArrayInterface;
+use React\Promise\PromiseInterface;
 
 /**
  * @property ResponseInterface|FutureInterface $_value
@@ -22,13 +22,13 @@ use GuzzleHttp\ToArrayInterface;
  * @method   array  getHeaders()
  * @method   string getHeader($header)
  */
-class FutureResult implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface
+class FutureResult implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface, PromiseInterface
 {
     use MagicFutureTrait;
 
     private static $compatibleKeys = [ 'status', 'text', 'info' ];
 
-    private $result = [];
+    private $esresult = [];
 
 
     public function offsetGet($offset)
@@ -78,27 +78,27 @@ class FutureResult implements \ArrayAccess, \Countable, ToArrayInterface, Future
 
     private function getFutureStatus()
     {
-        if (!isset($result['status']))
-            return $result['status'] = new FutureStatus(
+        if (!isset($this->esresult['status']))
+            return $this->esresult['status'] = new FutureStatus(
                 $this, [ $this, 'wait' ], [ $this, 'cancel' ]
             );
 
-        return $result['status'];
+        return $this->esresult['status'];
     }
 
     private function getFutureInfo()
     {
-        if (!isset($result['info']))
-            return $result['info'] = new FutureInfo(
+        if (!isset($this->esresult['info']))
+            return $this->esresult['info'] = new FutureInfo(
                 $this, [ $this, 'wait' ], [ $this, 'cancel' ]
             );
 
-        return $result['info'];
+        return $this->esresult['info'];
     }
 
     private function getFutureText()
     {
-        return $result['text'] = $this;
+        return $this->esresult['text'] = $this;
     }
 
     private function compatibleValue($name)

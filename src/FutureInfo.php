@@ -2,7 +2,6 @@
 /**
  * FutureInfo.php
  *
- * @copyright   Copyright (c) 2014 sonicmoov Co.,Ltd.
  * @version     $Id$
  *
  */
@@ -15,11 +14,13 @@ use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Future\FutureInterface;
 use GuzzleHttp\Ring\Future\MagicFutureTrait;
 use GuzzleHttp\ToArrayInterface;
+use React\Promise\PromiseInterface;
 
 /**
  * @property FutureResult $_value
  */
-class FutureInfo  implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface {
+class FutureInfo  implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface, PromiseInterface
+{
 
     use MagicFutureTrait;
 

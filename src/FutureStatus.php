@@ -2,7 +2,6 @@
 /**
  * FutureStatus.php
  *
- * @copyright   Copyright (c) 2014 sonicmoov Co.,Ltd.
  * @version     $Id$
  *
  */
@@ -15,11 +14,13 @@ use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Future\FutureInterface;
 use GuzzleHttp\Ring\Future\MagicFutureTrait;
 use GuzzleHttp\ToArrayInterface;
+use React\Promise\PromiseInterface;
 
 /**
  * @property FutureResult $_value
  */
-class FutureStatus implements FutureInterface {
+class FutureStatus implements FutureInterface, PromiseInterface
+{
 
     use MagicFutureTrait;
 
