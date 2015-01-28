@@ -14,8 +14,9 @@ use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Future\FutureInterface;
 use GuzzleHttp\Ring\Future\MagicFutureTrait;
 use GuzzleHttp\ToArrayInterface;
+use React\Promise\PromiseInterface;
 
-class FutureData  implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface {
+class FutureData  implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface, PromiseInterface {
 
     use MagicFutureTrait {
         MagicFutureTrait::wait as parentWait;
