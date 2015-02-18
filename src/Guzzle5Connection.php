@@ -68,25 +68,27 @@ class Guzzle5Connection extends AbstractConnection implements ConnectionInterfac
             $hostDetails['scheme'] = 'http';
         }
 
-        $loop = null;
+        $handler = null;
+
         if (isset($connectionParams)) {
-            if (!isset($connectionParams['loop'])) {
-                $log->critical('loop must be set in connectionParams');
-                throw new InvalidArgumentException('loop must be set in connectionParams');
+            if (isset($connectionParams['ringphp_handler'])) {
+                $handler = $connectionParams['ringphp_handler'];
+                unset($connectionParams['ringphp_handler']);
             }
-            $loop = $connectionParams['loop'];
-            unset($connectionParams['loop']);
 
             $this->connectionOpts = $connectionParams;
-        } else {
-            $log->critical('loop must be set in connectionParams');
-            throw new InvalidArgumentException('loop must be set in connectionParams');
         }
 
-        $this->guzzle = new \GuzzleHttp\Client([
-            'handler'  => new \WyriHaximus\React\RingPHP\HttpClientAdapter($loop),
-            'defaults' => [ 'future' => true ]
-        ]);
+        if ($handler) {
+            $this->guzzle = new \GuzzleHttp\Client([
+                'handler'  => $handler,
+                'defaults' => [ 'future' => true ]
+            ]);
+        } else {
+            $this->guzzle = new \GuzzleHttp\Client([
+                'defaults' => [ 'future' => true ]
+            ]);
+        }
 
         return parent::__construct($hostDetails, $connectionParams, $log, $trace);
 
