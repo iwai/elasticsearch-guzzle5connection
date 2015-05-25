@@ -9,6 +9,7 @@ Async support for elasticsearch-php
 
 ```php
 use React\EventLoop;
+use WyriHaximus\React\RingPHP\HttpClientAdapter;
 use Elasticsearch\Client as ESClient;
 
 $loop  = EventLoop\Factory::create();
@@ -17,7 +18,7 @@ $client = new ESClient([
     'hosts' => [ '127.0.0.1:9200' ],
     'connectionClass' => '\Iwai\Elasticsearch\Guzzle5Connection', // required
     'serializerClass' => '\Iwai\Elasticsearch\FutureSerializer',  // required
-    'connectionParams' => [ 'loop' => $loop ] // required
+    'connectionParams' => [ 'ringphp_handler' => new HttpClientAdapter($loop) ] // optional
 ]);
 
 $futureData = $client->get([
