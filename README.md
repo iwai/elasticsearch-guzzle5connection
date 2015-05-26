@@ -1,6 +1,8 @@
 elasticsearch-guzzle5connection
 ===============================
 
+[![Latest Stable Version](https://poser.pugx.org/iwai/elasticsearch-guzzle5connection/v/stable)](https://packagist.org/packages/iwai/elasticsearch-guzzle5connection) [![Total Downloads](https://poser.pugx.org/iwai/elasticsearch-guzzle5connection/downloads)](https://packagist.org/packages/iwai/elasticsearch-guzzle5connection) [![Latest Unstable Version](https://poser.pugx.org/iwai/elasticsearch-guzzle5connection/v/unstable)](https://packagist.org/packages/iwai/elasticsearch-guzzle5connection) [![License](https://poser.pugx.org/iwai/elasticsearch-guzzle5connection/license)](https://packagist.org/packages/iwai/elasticsearch-guzzle5connection) [![Build Status](https://travis-ci.org/iwai/elasticsearch-guzzle5connection.svg?branch=master)](https://travis-ci.org/iwai/elasticsearch-guzzle5connection)
+
 Async support for elasticsearch-php
 
 * Unsupported logging
