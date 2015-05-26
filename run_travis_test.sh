@@ -20,7 +20,7 @@ echo "Starting Elasticsearch v${ES_VERSION}"
 ./${ES_DIR}/bin/elasticsearch \
     -Des.network.host=localhost \
     -Des.discovery.zen.ping.multicast.enabled=false \
-    -Des.discovery.zen.ping_timeout=1
+    -Des.discovery.zen.ping_timeout=1 >/dev/null 2>&1
 
 sleep 5
 
