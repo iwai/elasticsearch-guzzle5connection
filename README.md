@@ -7,6 +7,75 @@ Async support for elasticsearch-php
 
 ## Example
 
+### Transparent async request 
+
+```php
+use Elasticsearch\Client as ESClient;
+
+$client = new ESClient([
+    'hosts' => [ '127.0.0.1:9200' ],
+    'connectionClass' => '\Iwai\Elasticsearch\Guzzle5Connection',
+    'serializerClass' => '\Iwai\Elasticsearch\FutureSerializer'
+]);
+
+$response = $client->get([
+    'index' => 'index_name',
+    'type'  => 'type',
+    'id'    => '1',
+]);
+
+echo $response['hits']['total'];
+
+```
+
+### Explicit wait request  
+
+```php
+use Elasticsearch\Client as ESClient;
+
+$client = new ESClient([
+    'hosts' => [ '127.0.0.1:9200' ],
+    'connectionClass' => '\Iwai\Elasticsearch\Guzzle5Connection',
+    'serializerClass' => '\Iwai\Elasticsearch\FutureSerializer'
+]);
+
+$future = $client->get([
+    'index' => 'index_name',
+    'type'  => 'type',
+    'id'    => '1',
+]);
+
+$response = $future->wait();
+
+echo $response['hits']['total'];
+
+```
+
+### Promise style  
+
+```php
+use Elasticsearch\Client as ESClient;
+
+$client = new ESClient([
+    'hosts' => [ '127.0.0.1:9200' ],
+    'connectionClass' => '\Iwai\Elasticsearch\Guzzle5Connection',
+    'serializerClass' => '\Iwai\Elasticsearch\FutureSerializer'
+]);
+
+$future = $client->get([
+    'index' => 'index_name',
+    'type'  => 'type',
+    'id'    => '1',
+]);
+
+$futureData->then(function ($response) {
+    echo $response['hits']['total'];
+});
+
+```
+
+### With RingPHP
+
 ```php
 use React\EventLoop;
 use WyriHaximus\React\RingPHP\HttpClientAdapter;
@@ -32,8 +101,5 @@ $futureData->then(function ($response) {
 });
 
 $loop->run();
-
-// or this is blocking
-echo $response['hits']['total'];
 
 ```
