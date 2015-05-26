@@ -5,7 +5,11 @@ elasticsearch-guzzle5connection
 
 Async support for elasticsearch-php
 
-* Unsupported logging
+## Caution!!!
+
+* **Unsupported `ping` method**
+* **Unsupported `exists` method**
+* **Unsupported logging**
 
 ## Install
 

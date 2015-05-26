@@ -69,8 +69,19 @@ class ESClientIntegrationTest extends \Codeception\TestCase\Test
 
         $this->assertInstanceOf('Iwai\Elasticsearch\FutureData', $response);
 
-        codecept_debug($response->toArray());
         $this->assertEquals(1, $response['created']);
+    }
+
+
+    public function testExists()
+    {
+        $this->markTestSkipped('Unsupported yet');
+
+        $this->assertTrue($this->client->exists([
+            'index' => 'my_index',
+            'type'  => 'my_type',
+            'id'    => 'my_id'
+        ]));
     }
 
     public function testIndexDocument2()
