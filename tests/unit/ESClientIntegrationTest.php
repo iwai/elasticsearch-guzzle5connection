@@ -69,6 +69,7 @@ class ESClientIntegrationTest extends \Codeception\TestCase\Test
 
         $this->assertInstanceOf('Iwai\Elasticsearch\FutureData', $response);
 
+        codecept_debug($response->toArray());
         $this->assertEquals(1, $response['created']);
     }
 
