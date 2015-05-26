@@ -14,7 +14,6 @@ use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Future\FutureInterface;
 use GuzzleHttp\Ring\Future\MagicFutureTrait;
 use GuzzleHttp\ToArrayInterface;
-use React\Promise\PromiseInterface;
 
 /**
  * @property ResponseInterface|FutureInterface $_value
@@ -22,7 +21,7 @@ use React\Promise\PromiseInterface;
  * @method   array  getHeaders()
  * @method   string getHeader($header)
  */
-class FutureResult implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface, PromiseInterface
+class FutureResult implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface
 {
     use MagicFutureTrait;
 

@@ -14,9 +14,8 @@ use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Future\FutureInterface;
 use GuzzleHttp\Ring\Future\MagicFutureTrait;
 use GuzzleHttp\ToArrayInterface;
-use React\Promise\PromiseInterface;
 
-class FutureData  implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface, PromiseInterface {
+class FutureData implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface {
 
     use MagicFutureTrait {
         MagicFutureTrait::wait as parentWait;
@@ -29,32 +28,32 @@ class FutureData  implements \ArrayAccess, \Countable, ToArrayInterface, FutureI
 
     public function offsetGet($offset)
     {
-        return $this->_value->offsetGet($offset);
+        return $this->_value[ $offset ];
     }
 
     public function offsetSet($offset, $value)
     {
-        $this->_value->offsetSet($offset, $value);
+        $this->_value[ $offset ] = $value;
     }
 
     public function offsetExists($offset)
     {
-        return $this->_value->offsetExists($offset);
+        return array_key_exists($offset, $this->_value);
     }
 
     public function offsetUnset($offset)
     {
-        $this->_value->offsetUnset($offset);
+        unset($this->_value[$offset]);
     }
 
     public function toArray()
     {
-        return $this->_value->toArray();
+        return $this->_value;
     }
 
     public function count()
     {
-        return $this->_value->count();
+        return count($this->_value);
     }
 
     public function __call($name, $arguments)
@@ -69,7 +68,7 @@ class FutureData  implements \ArrayAccess, \Countable, ToArrayInterface, FutureI
     public function __toString()
     {
         try {
-            return (string) $this->_value;
+            return (string)$this->_value;
         } catch (\Exception $e) {
             trigger_error($e->getMessage(), E_USER_WARNING);
             return '';

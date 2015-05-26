@@ -60,7 +60,7 @@ class FutureSerializer {
 //                echo sprintf('%s in %s at %d', $e->getMessage(), __FILE__, __LINE__) . PHP_EOL;
             });
 
-            return new FutureData($promise);
+            return new FutureData($promise, [ $data, 'wait' ]);
         } else {
 
             if (isset($headers['content_type']) === true) {

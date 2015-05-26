@@ -14,12 +14,11 @@ use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Future\FutureInterface;
 use GuzzleHttp\Ring\Future\MagicFutureTrait;
 use GuzzleHttp\ToArrayInterface;
-use React\Promise\PromiseInterface;
 
 /**
  * @property FutureResult $_value
  */
-class FutureInfo  implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface, PromiseInterface
+class FutureInfo  implements \ArrayAccess, \Countable, ToArrayInterface, FutureInterface
 {
 
     use MagicFutureTrait;
