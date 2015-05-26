@@ -22,6 +22,6 @@ echo "Starting Elasticsearch v${ES_VERSION}"
     -Des.discovery.zen.ping.multicast.enabled=false \
     -Des.discovery.zen.ping_timeout=1
 
-sleep 3
+sleep 5
 
 php ./vendor/bin/codecept run
