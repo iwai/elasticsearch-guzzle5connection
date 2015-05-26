@@ -7,6 +7,17 @@ Async support for elasticsearch-php
 
 * Unsupported logging
 
+## Install
+
+```javascript
+{
+    "require": {
+        "elasticsearch/elasticsearch": "~1.0",
+        "iwai/elasticsearch-guzzle5connection": "~1.0"
+    }
+}
+```
+
 ## Example
 
 ### Transparent async request 
