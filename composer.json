@@ -7,7 +7,7 @@
         "elasticsearch/elasticsearch": "~1.0",
         "guzzlehttp/guzzle": "~5.0",
         "guzzlehttp/ringphp": "^1.0.6",
-        "wyrihaximus/react-guzzle-ring": "dev-master"
+        "wyrihaximus/react-guzzle-ring": "~1.0"
     },
     "require-dev": {
         "codeception/codeception": "*"

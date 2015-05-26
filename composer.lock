@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7cb46c92ae8d30107e25447ad6c0102f",
+    "hash": "5d9e2cf398962ce80596d102ee0046d0",
     "packages": [
         {
             "name": "elasticsearch/elasticsearch",
@@ -966,7 +966,7 @@
         },
         {
             "name": "wyrihaximus/react-guzzle-ring",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/ReactGuzzleRing.git",
@@ -2366,9 +2366,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "wyrihaximus/react-guzzle-ring": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
