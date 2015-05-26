@@ -3,7 +3,7 @@ php:
   - "5.5"
   - "5.4"
 env:
-  - ES_VERSION=0.90.5 ES_TEST_HOST=http://localhost:9200
+  - ES_VERSION=1.5.2 ES_TEST_HOST=http://127.0.0.1:9200
 
 before_script:
   - composer install --dev
